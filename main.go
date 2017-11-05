@@ -24,13 +24,31 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(num)
-	var primes []int
-	primes = findPrimeFactors(float32(num))
-	fmt.Println(primes)
+	fmt.Println(findPrimeFactors(num))
 }
 
-func findPrimeFactors(num float32) []int {
-	var primes []int
-	return primes
+func findPrimeFactors(num int) (primes []int) {
+	// Algorithm found at www.geeksforgeeks.org/print-all-prime-factors-of-a-given-number/
+
+	// Print the number of 2s that divide num
+	for num%2 == 0 {
+		primes = append(primes, 2)
+		num /= 2
+	}
+
+	// n must be odd at this point. So we can skip one element
+	for i := 3; i*i < num; i = i + 2 {
+		// While i divides num, append i and divide num
+		for num%i == 0 {
+			primes = append(primes, i)
+			num /= i
+		}
+	}
+
+	// This condition is to hanle the case when n is a prime number geater than 2
+	if num > 2 {
+		primes = append(primes, num)
+	}
+
+	return
 }
