@@ -27,9 +27,10 @@ func main() {
 	fmt.Println(findPrimeFactors(num))
 }
 
-func findPrimeFactors(num int) (primes []int) {
+func findPrimeFactors(num int) []int {
 	// Algorithm found at www.geeksforgeeks.org/print-all-prime-factors-of-a-given-number/
 
+	var primes []int
 	// Print the number of 2s that divide num
 	for num%2 == 0 {
 		primes = append(primes, 2)
@@ -50,5 +51,5 @@ func findPrimeFactors(num int) (primes []int) {
 		primes = append(primes, num)
 	}
 
-	return
+	return primes
 }
